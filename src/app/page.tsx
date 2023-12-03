@@ -1,94 +1,135 @@
-import Image from 'next/image'
+'use client'
+
 import styles from './page.module.css'
+import { Canvas, Euler, Vector3 } from '@react-three/fiber'
+import { OrbitControls } from '@react-three/drei'
+import Model from './components/santi'
+import { gsap } from "gsap";
+
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect } from 'react'
+import Mountains from './components/Mountains'
+import { WavesSvg } from './components/WaveSvg'
+import Card from './components/card'
+
+import GlobantDescription from './components/card/descriptions/GlobantDescription'
+import AndesDescription from './components/card/descriptions/AndesDescription'
+import MuniDescription from './components/card/descriptions/MuniDescription'
+import AdusDescription from './components/card/descriptions/AdusDescription'
+
+// 3D Model values
+const defaultPosition: Vector3 = [2.5, 0, 0]
+const defaultRotation: Euler = [0.2, -0.6, 0.2]
+const defaultScale = 0.7
+
+const colors = {
+  lightBlue: '#00ADB5',
+}
+
+const cardData = {
+  images: [
+    {
+      path: '/icons/workPlaces/globantLogo.png',
+      selected: true,
+      id: 'globant',
+      alt: 'globant logo'
+    },
+    {
+      path: '/icons/workPlaces/andesLogo.png',
+      id: 'andes',
+      selected: false,
+      alt: 'andes logo'
+    },
+    {
+      path: '/icons/workPlaces/muni.png',
+      id: 'muni',
+      selected: false,
+      alt: 'municipallity logo'
+    },
+    {
+      path: '/icons/workPlaces/adus.jpg',
+      id: 'adus',
+      selected: false,
+      alt: 'adus logo'
+    }
+  ],
+  details: [
+    { title: 'Globant', imgId: 'globant', text: <GlobantDescription /> },
+    { title: 'Andes', imgId: 'andes', text: <AndesDescription /> },
+    { title: 'Municipality of Neuquen', imgId: 'muni', text: <MuniDescription /> },
+    { title: 'ADUS / IPVU', imgId: 'adus', text: <AdusDescription /> }
+  ]
+}
 
 export default function Home() {
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+  }, [])
+  
+  const handleMouseEnterLogo = (event: any) => {
+    if (event?.target?.innerHTML) {
+      const tl = gsap.timeline();
+      tl.to("#logoText", { opacity: 0, duration: 0.3, onComplete: () => {event.target.innerHTML = "<span id='logoText'>Santi Lubary</span>"} });
+      tl.to("#logoText", { opacity: 1, duration: 0.3 });
+    }
+  }
+  const handleMouseLeaveLogo = (event: any) => {
+    if (event?.target?.innerHTML) {
+      const tl = gsap.timeline();
+      tl.to("#logoText", { opacity: 0, duration: 0.3, onComplete: () => {event.target.innerHTML = "<span id='logoText'>SL</span>"} });
+      tl.to("#logoText", { opacity: 1, duration: 0.3 });
+    }
+  }
+
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+      <div className={styles.header}>
+        <div id='logo' className={styles.logo} onMouseLeave={handleMouseLeaveLogo} onMouseEnter={handleMouseEnterLogo}>
+          <span id='logoText'>SL</span>
         </div>
+        <nav className={styles.headerNavContainer}>
+          <a href="#" className={styles.navLink}>Experiencia</a>
+          <a href="#" className={styles.navLink}>Sobre Mi</a>
+          <a href="#" className={styles.navLink}>Conectar</a>
+        </nav>
       </div>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <section className={styles.greetingsSection}>
+        <p className={styles.greetingsP}>Hola! Soy Santi</p>
+        <h1 className={styles.greetingsH1}>Full Stack Web Developer</h1>
+
+        <div className={styles.curriculumButton}>
+          Descargar CV
+        </div>
+      </section>
+
+      <div className={styles.model}>
+        <Canvas>
+          <OrbitControls />
+          <hemisphereLight groundColor={colors.lightBlue} intensity={0.1} />
+          <directionalLight color={colors.lightBlue} position={[5, 1, -19]} intensity={0.4} />
+          <directionalLight color={colors.lightBlue} position={[-500, 1, -100]} intensity={0.3} />
+          <directionalLight position={[5, 1, 10]} intensity={1} />
+          <Model bbanchor={true} laptop={true} position={defaultPosition} rotation={defaultRotation} scale={defaultScale} />
+        </Canvas>
       </div>
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+      {/* second section */}
+      <div className={styles.mountainsContainer}>
+        <Mountains className={styles.mountains} />
+      </div>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+      <div className={styles.cardContainer}>
+        <Card data={cardData} />
+      </div>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
+      <div className={styles.wave}>
+        <WavesSvg />
+      </div>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+      {/* next section in width background */}
+      <div className={styles.contactContainer}>
+
       </div>
     </main>
   )
