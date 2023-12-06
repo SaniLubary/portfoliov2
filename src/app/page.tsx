@@ -17,6 +17,7 @@ import AndesDescription from './components/organisms/card/descriptions/AndesDesc
 import MuniDescription from './components/organisms/card/descriptions/MuniDescription'
 import AdusDescription from './components/organisms/card/descriptions/AdusDescription'
 import Header from './components/organisms/header'
+import Services from './components/organisms/services'
 
 // 3D Model values
 const defaultPosition: Vector3 = [2.5, 0, 0]
@@ -121,8 +122,8 @@ export default function Home() {
       </div>
 
       {/* next section inside background */}
-      <div className={styles.contactContainer}>
-
+      <div className={styles.turquoiseContainer}>
+        <Services />
       </div>
     </main>
   )
