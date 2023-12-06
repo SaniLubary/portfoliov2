@@ -19,6 +19,8 @@ import AdusDescription from './components/organisms/card/descriptions/AdusDescri
 import Header from './components/organisms/header'
 import Services from './components/organisms/services'
 
+gsap.registerPlugin(ScrollTrigger);
+
 // 3D Model values
 const defaultPosition: Vector3 = [2.5, 0, 0]
 const defaultRotation: Euler = [0.2, -0.6, 0.2]
@@ -47,14 +49,14 @@ const cardData = {
       id: 'muni',
       selected: false,
       alt: 'municipallity logo',
-      style: {top : '-50px', position: 'relative'},
+      style: { top: '-50px', position: 'relative' },
     },
     {
       path: '/icons/workPlaces/adus.jpg',
       id: 'adus',
       selected: false,
       alt: 'adus logo',
-      style: {top : '-100px', position: 'relative'},
+      style: { top: '-100px', position: 'relative' },
     }
   ],
   details: [
@@ -66,21 +68,17 @@ const cardData = {
 }
 
 export default function Home() {
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-  }, [])
-
   const main = useRef(null)
-  
+
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       gsap.to('.greetings', {
         x: 500,
         stagger: 0.1,
-        delay:0.3
+        delay: 0.3
       })
     }, main)
-  
+
     return () => ctx.revert();
   }, [])
 
