@@ -1,0 +1,39 @@
+.headerContainer { 
+    position: fixed;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    z-index: 20;
+    width: 100%;
+
+    top: -300px;
+}
+
+.logo {
+  padding: 16px;
+  border-radius: 6px;
+  background: linear-gradient(163deg, #df3600 6.78%, #2f130a 171.79%);
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+.logo:hover {
+  padding: 16px 24px
+}
+
+.header {
+  grid-column: 2 / 12;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 24px 0;
+}
+
+.navLink {
+  font-size: 1.2em;
+  transition: all 0.2s ease-in-out;
+  margin: 0 8px;
+}
+.navLink:hover {
+  color: var(--turquoise);
+}

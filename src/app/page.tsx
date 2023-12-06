@@ -3,19 +3,20 @@
 import styles from './page.module.css'
 import { Canvas, Euler, Vector3 } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
-import Model from './components/santi'
+import Model from './components/atoms/santi'
 import { gsap } from "gsap";
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useEffect } from 'react'
-import Mountains from './components/Mountains'
-import { WavesSvg } from './components/WaveSvg'
-import Card from './components/card'
+import { useEffect, useLayoutEffect, useRef } from 'react'
+import Mountains from './components/atoms/mountains'
+import { WavesSvg } from './components/atoms/WaveSvg'
+import Card from './components/organisms/card'
 
-import GlobantDescription from './components/card/descriptions/GlobantDescription'
-import AndesDescription from './components/card/descriptions/AndesDescription'
-import MuniDescription from './components/card/descriptions/MuniDescription'
-import AdusDescription from './components/card/descriptions/AdusDescription'
+import GlobantDescription from './components/organisms/card/descriptions/GlobantDescription'
+import AndesDescription from './components/organisms/card/descriptions/AndesDescription'
+import MuniDescription from './components/organisms/card/descriptions/MuniDescription'
+import AdusDescription from './components/organisms/card/descriptions/AdusDescription'
+import Header from './components/organisms/header'
 
 // 3D Model values
 const defaultPosition: Vector3 = [2.5, 0, 0]
@@ -44,13 +45,15 @@ const cardData = {
       path: '/icons/workPlaces/muni.png',
       id: 'muni',
       selected: false,
-      alt: 'municipallity logo'
+      alt: 'municipallity logo',
+      style: {top : '-50px', position: 'relative'},
     },
     {
       path: '/icons/workPlaces/adus.jpg',
       id: 'adus',
       selected: false,
-      alt: 'adus logo'
+      alt: 'adus logo',
+      style: {top : '-100px', position: 'relative'},
     }
   ],
   details: [
@@ -65,40 +68,30 @@ export default function Home() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
   }, [])
+
+  const main = useRef(null)
   
-  const handleMouseEnterLogo = (event: any) => {
-    if (event?.target?.innerHTML) {
-      const tl = gsap.timeline();
-      tl.to("#logoText", { opacity: 0, duration: 0.3, onComplete: () => {event.target.innerHTML = "<span id='logoText'>Santi Lubary</span>"} });
-      tl.to("#logoText", { opacity: 1, duration: 0.3 });
-    }
-  }
-  const handleMouseLeaveLogo = (event: any) => {
-    if (event?.target?.innerHTML) {
-      const tl = gsap.timeline();
-      tl.to("#logoText", { opacity: 0, duration: 0.3, onComplete: () => {event.target.innerHTML = "<span id='logoText'>SL</span>"} });
-      tl.to("#logoText", { opacity: 1, duration: 0.3 });
-    }
-  }
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.to('.greetings', {
+        x: 500,
+        stagger: 0.1,
+        delay:0.3
+      })
+    }, main)
+  
+    return () => ctx.revert();
+  }, [])
 
   return (
-    <main className={styles.main}>
-      <div className={styles.header}>
-        <div id='logo' className={styles.logo} onMouseLeave={handleMouseLeaveLogo} onMouseEnter={handleMouseEnterLogo}>
-          <span id='logoText'>SL</span>
-        </div>
-        <nav className={styles.headerNavContainer}>
-          <a href="#" className={styles.navLink}>Experiencia</a>
-          <a href="#" className={styles.navLink}>Sobre Mi</a>
-          <a href="#" className={styles.navLink}>Conectar</a>
-        </nav>
-      </div>
+    <main ref={main} className={styles.main}>
+      <Header />
 
       <section className={styles.greetingsSection}>
-        <p className={styles.greetingsP}>Hola! Soy Santi</p>
-        <h1 className={styles.greetingsH1}>Full Stack Web Developer</h1>
+        <p className={`${styles.greetingsP} ${styles.greetings} greetings`}>Hola! Soy Santi</p>
+        <h1 className={`${styles.greetingsH1} ${styles.greetings} greetings`}>Full Stack Web Developer</h1>
 
-        <div className={styles.curriculumButton}>
+        <div className={`${styles.curriculumButton} ${styles.greetings} greetings`}>
           Descargar CV
         </div>
       </section>
@@ -116,7 +109,7 @@ export default function Home() {
 
       {/* second section */}
       <div className={styles.mountainsContainer}>
-        <Mountains className={styles.mountains} />
+        <Mountains />
       </div>
 
       <div className={styles.cardContainer}>
@@ -127,7 +120,7 @@ export default function Home() {
         <WavesSvg />
       </div>
 
-      {/* next section in width background */}
+      {/* next section inside background */}
       <div className={styles.contactContainer}>
 
       </div>

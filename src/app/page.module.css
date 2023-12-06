@@ -4,36 +4,6 @@
   grid-auto-rows: minmax(100px, auto);
 }
 
-.logo {
-  padding: 24px;
-  border-radius: 24px;
-  background: linear-gradient(163deg, #DF3600 6.78%, #2F130A 171.79%);
-  transition: all 0.5s ease-in-out;
-  cursor: pointer;
-}
-
-.logo:hover {
-  padding: 24px 42px;
-}
-
-.header {
-  grid-column: 2 / 12;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin: 48px 0;
-}
-
-.navLink {
-  font-size: 1.2em;
-  transition: all 0.2s ease-in-out;
-  margin: 0 8px;
-}
-.navLink:hover {
-  color: var(--turquoise);
-}
-
 .greetingsSection {
   grid-column: 2 / 7;
   grid-row: 3 / 6;
@@ -47,6 +17,11 @@
   margin-top: 16px;
   width: 80%;
   font-size: 3em;
+}
+
+.greetings {
+  position: relative;
+  left: -500px;
 }
 
 .curriculumButton {
@@ -72,15 +47,12 @@
 .cardContainer {
   grid-column: 9 / 12;
   grid-row: 8 / 12;
-  z-index: 1;
+  z-index: 2;
 }
 
 .mountainsContainer {
   grid-column: 1 / 2;
   grid-row: 7 / 16;
-}
-.mountains {
-  position: absolute;
 }
 
 .wave {
@@ -91,6 +63,7 @@
 }
 
 .contactContainer {
+  z-index: 1;
   grid-column: 1 / 13;
   grid-row: 14 / 20;
   background: linear-gradient(
