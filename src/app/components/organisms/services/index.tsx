@@ -11,7 +11,6 @@ const Services = () => {
 					start: '50% 50%',
 					end: '65% 50%',
 					scrub: 3,
-					markers: true,
 				},
 				y: 0,
 				opacity: 1,
