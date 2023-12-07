@@ -40,7 +40,7 @@ export const muniData = {
     },
   ],
   details: [
-    { title: 'Municipality of Neuquen', imgId: 'muni', text: <MuniDescription /> },
+    { title: 'Municipalidad de Neuquén', imgId: 'muni', text: <MuniDescription /> },
   ]
 }
 export const adusData = {
