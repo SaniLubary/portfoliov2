@@ -64,14 +64,13 @@ const Card = ({ data }: CardProps) => {
         top: 700,
         opacity: 1
       })
-      gsap.fromTo(card.current,{opacity: 1}, {
+      gsap.fromTo(card.current, {opacity: 1}, {
         scrollTrigger: {
           trigger: 'main',
-          start: '60% 50%',
-          end: '65% 50%',
+          start: '45% 50%',
+          end: '45% 50%',
           scrub: true,
         },
-        right: -500,
         opacity: 0,
       })
     }, 'main')

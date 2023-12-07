@@ -10,11 +10,11 @@ const Mountains = (props: any) => {
       gsap.to(mountains.current, {
         scrollTrigger: {
           trigger: 'main',
-          start: '30% 50%',
-          end: '40% 50%',
+          start: '40% 50%',
+          end: '50% 50%',
           scrub: 3,
         },
-        top: 600,
+        top: 1000,
         scaleX: 1.3,
         scaleY: -1.3
       })

@@ -7,17 +7,15 @@ import Model from './components/atoms/santi'
 import { gsap } from "gsap";
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useEffect, useLayoutEffect, useRef } from 'react'
+import { useLayoutEffect, useRef } from 'react'
 import Mountains from './components/atoms/mountains'
 import { WavesSvg } from './components/atoms/WaveSvg'
 import Card from './components/organisms/card'
 
-import GlobantDescription from './components/organisms/card/descriptions/GlobantDescription'
-import AndesDescription from './components/organisms/card/descriptions/AndesDescription'
-import MuniDescription from './components/organisms/card/descriptions/MuniDescription'
-import AdusDescription from './components/organisms/card/descriptions/AdusDescription'
 import Header from './components/organisms/header'
 import Services from './components/organisms/services'
+import { adusData, globantData, muniData } from './cardsData'
+import ScrollIcon from './components/atoms/scrollIcon'
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -30,43 +28,6 @@ const colors = {
   lightBlue: '#00ADB5',
 }
 
-const cardData = {
-  images: [
-    {
-      path: '/icons/workPlaces/globantLogo.png',
-      selected: true,
-      id: 'globant',
-      alt: 'globant logo'
-    },
-    {
-      path: '/icons/workPlaces/andesLogo.png',
-      id: 'andes',
-      selected: false,
-      alt: 'andes logo'
-    },
-    {
-      path: '/icons/workPlaces/muni.png',
-      id: 'muni',
-      selected: false,
-      alt: 'municipallity logo',
-      style: { top: '-50px', position: 'relative' },
-    },
-    {
-      path: '/icons/workPlaces/adus.jpg',
-      id: 'adus',
-      selected: false,
-      alt: 'adus logo',
-      style: { top: '-100px', position: 'relative' },
-    }
-  ],
-  details: [
-    { title: 'Globant', imgId: 'globant', text: <GlobantDescription /> },
-    { title: 'Andes', imgId: 'andes', text: <AndesDescription /> },
-    { title: 'Municipality of Neuquen', imgId: 'muni', text: <MuniDescription /> },
-    { title: 'ADUS / IPVU', imgId: 'adus', text: <AdusDescription /> }
-  ]
-}
-
 export default function Home() {
   const main = useRef(null)
 
@@ -76,6 +37,17 @@ export default function Home() {
         x: 500,
         stagger: 0.1,
         delay: 0.3
+      })
+
+      gsap.fromTo(`.${styles.cardTitle}`, { opacity: 0, y: 100 }, {
+        scrollTrigger: {
+          trigger: 'main',
+          start: '20% 50%',
+          end: '30% 50%',
+          scrub: 3,
+        },
+        opacity: 1,
+        y: 0
       })
     }, main)
 
@@ -94,6 +66,10 @@ export default function Home() {
           Descargar CV
         </div>
       </section>
+      
+      <div className={styles.scrollIconContainer}>
+        <ScrollIcon />
+      </div>
 
       <div className={styles.model}>
         <Canvas>
@@ -112,7 +88,12 @@ export default function Home() {
       </div>
 
       <div className={styles.cardContainer}>
-        <Card data={cardData} />
+        <div>{/* Space to move next card */}</div>
+        <div className={styles.cardTitle}><h1 style={{ textAlign: 'center' }}>EXPERIENCIAS</h1></div>
+        <div>{/* Space to move next card */}</div>
+        <Card data={globantData} />
+        <Card data={muniData} />
+        <Card data={adusData} />
       </div>
 
       <div className={styles.wave}>
