@@ -16,6 +16,7 @@ import Header from './components/organisms/header'
 import Services from './components/organisms/services'
 import { adusData, globantData, muniData } from './cardsData'
 import ScrollIcon from './components/atoms/scrollIcon'
+import Contact from './components/organisms/contact'
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -63,7 +64,7 @@ export default function Home() {
         <h1 className={`${styles.greetingsH1} ${styles.greetings} greetings`}>Full Stack Web Developer</h1>
 
         <div className={`${styles.curriculumButton} ${styles.greetings} greetings`}>
-          Descargar CV
+          Hablemos!
         </div>
       </section>
       
@@ -103,6 +104,7 @@ export default function Home() {
       {/* next section inside background */}
       <div className={styles.turquoiseContainer}>
         <Services />
+        <Contact />
       </div>
     </main>
   )

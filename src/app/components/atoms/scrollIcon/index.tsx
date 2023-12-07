@@ -11,6 +11,12 @@ const ScrollIcon = (props: SVGProps<SVGSVGElement>) => {
         tl.to(`.${styles.arrow2}`, {opacity: 0, duration: 0.3})
         tl.to(`.${styles.arrow3}`, {opacity: 0, duration: 0.3})
       }, 'main')
+
+      gsap.fromTo(`.scrollIcon`, {opacity: 0}, {
+        opacity: 1,
+        duration: 0.5,
+        delay: 2
+      })
     
       return () => ctx.revert();
     }, [])
@@ -21,6 +27,8 @@ const ScrollIcon = (props: SVGProps<SVGSVGElement>) => {
             width={46}
             height={80}
             fill="none"
+            opacity={0}
+            className="scrollIcon"
             {...props}
         >
             <rect width={46} height={80} fill="#263645" rx={23} />

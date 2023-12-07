@@ -67,8 +67,8 @@ const Card = ({ data }: CardProps) => {
       gsap.fromTo(card.current, {opacity: 1}, {
         scrollTrigger: {
           trigger: 'main',
-          start: '45% 50%',
-          end: '45% 50%',
+          start: '35% 50%',
+          end: '38% 50%',
           scrub: true,
         },
         opacity: 0,
@@ -108,12 +108,10 @@ const Card = ({ data }: CardProps) => {
   function centerCardImage() {
     if (!refImage.current) return
 
-    const imgWidth = refImage.current.width
-
     if (refImage.current.height < 180) {
       refImage.current.style.top = '-175px'
     } else {
-      refImage.current.style.top = `-${imgWidth / 1.5}px`
+      refImage.current.style.top = `-100px`
     }
   }
 
@@ -189,7 +187,7 @@ const Card = ({ data }: CardProps) => {
       </div>
 
       {/* Image selection */}
-      <div className={styles.imageSelectionContainer}>
+      {cardData.images.length > 1 && <div className={styles.imageSelectionContainer}>
         {cardData.images.map((img) =>
           <div
             key={img.id+img.path}
@@ -197,7 +195,7 @@ const Card = ({ data }: CardProps) => {
             onClick={() => handleButtonClick(img)}>
           </div>
         )}
-      </div>
+      </div>}
 
       <SeparatorLine />
 

@@ -1,5 +1,5 @@
 const MuniDescription = () => <>
-      I&apos;ve worked in multiple Apps <b style={{ color: 'var(--oragne)' }}>leading a team of 3</b> using <b>React - Typescript - NodeJS - Docker</b>.
+      Hice multiples apps <b style={{ color: 'var(--oragne)' }}>y lidere un equipo de 3</b> usando <b>React - Typescript - NodeJS - Docker</b>.
     </>
 
 export default MuniDescription
