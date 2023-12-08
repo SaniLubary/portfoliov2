@@ -1,6 +1,6 @@
 .contactContainer {
-    grid-area: 4/2/7/12;
-    background-color: var(--dark-blue);
+    grid-area: 3/2/6/12;
+    background-color: var(--grey);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -47,4 +47,36 @@
     border: unset;
     border-bottom: 0.1em solid var(--white);
     font-size: 1em;
+}
+
+.sendButton {
+    background-color: var(--dark-blue);
+    border: none;
+    padding: 1em 2em;
+    margin: 1em 0;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+    font-size: 1em;
+}
+
+@media (max-width: 705px) {
+    .infoContainer {
+        align-self: center;
+    }
+    .separatorLine {
+        margin-bottom: 0;
+    }
+    .contactContainer {
+        grid-area: 3/2/6/10;
+    }
+    .infoFormCotainer {
+        flex-direction: column;
+    }
+    .formContainer {
+        width: 100%;
+        margin-top: 2em;
+    }
 }

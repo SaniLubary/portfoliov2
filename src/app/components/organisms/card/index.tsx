@@ -2,6 +2,7 @@ import { MutableRefObject, ReactElement, useEffect, useLayoutEffect, useRef, use
 import { gsap } from "gsap";
 import Image from "next/image";
 import styles from './card.module.css'
+import { ScrollTrigger } from "gsap/all";
 
 const SeparatorLine = () => <div className={styles.separatorLine}></div>
 
@@ -49,30 +50,10 @@ const Card = ({ data }: CardProps) => {
   const card = useRef(null)
 
   useLayoutEffect(() => {
-    centerCardImage()
     const ctx = gsap.context(() => {
       if (refImage.current) {
         floatAnimation(refImage)
       }
-      gsap.fromTo(card.current, {opacity: 0}, {
-        scrollTrigger: {
-          trigger: 'main',
-          start: '25% 50%',
-          end: '35% 50%',
-          scrub: true,
-        },
-        top: 700,
-        opacity: 1
-      })
-      gsap.fromTo(card.current, {opacity: 1}, {
-        scrollTrigger: {
-          trigger: 'main',
-          start: '35% 50%',
-          end: '38% 50%',
-          scrub: true,
-        },
-        opacity: 0,
-      })
     }, 'main')
 
     return () => ctx.revert()
@@ -85,7 +66,6 @@ const Card = ({ data }: CardProps) => {
     refImage.current.src = img.path;
     setCurrentImg(img)
     fadeOutCardImage(refImage.current)
-    centerCardImage()
 
     setCardData({
       ...cardData,
@@ -99,20 +79,10 @@ const Card = ({ data }: CardProps) => {
 
   function fadeOutCardImage(elem: HTMLElement) {
     gsap.to(elem, {
-      opacity: "100%",
+      opacity: 1,
       duration: 0.5,
       ease: "power3.inOut",
     })
-  }
-
-  function centerCardImage() {
-    if (!refImage.current) return
-
-    if (refImage.current.height < 180) {
-      refImage.current.style.top = '-175px'
-    } else {
-      refImage.current.style.top = `-100px`
-    }
   }
 
   const handleImageClick = () => {
@@ -158,7 +128,6 @@ const Card = ({ data }: CardProps) => {
       if (img.selected === true && refImage.current) {
         refImage.current.src = img.path;
         setCurrentImg(img)
-        centerCardImage()
         fadeOutCardImage(refImage.current)
       }
     });
@@ -172,7 +141,7 @@ const Card = ({ data }: CardProps) => {
   }
 
   return (
-    <div ref={card} className={styles.card}>
+    <div ref={card} className={`${styles.card} card`}>
       {/* Image */}
       <div className={styles.imageContainer} onClick={() => handleImageClick()}>
         <Image

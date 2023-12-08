@@ -1,14 +1,32 @@
-import React from 'react'
+import React, { useLayoutEffect } from 'react'
 import styles from './contact.module.css'
 import Image from 'next/image'
+import gsap from 'gsap'
 
 const Input = ({width = '30%'}) => {
   return <input className={styles.input} style={{ width }}/>
 }
 
 const Contact = () => {
+  useLayoutEffect(() => {
+		const ctx = gsap.context(() => {
+			gsap.fromTo(`.${styles.contactContainer}`, { opacity: 0, y: 500 }, {
+				scrollTrigger: {
+					trigger: `.${styles.contactContainer}`,
+					scrub: 3,
+					start: '-100% 100%',
+					end: '-100%'
+				},
+				y: 0,
+				opacity: 1,
+			})
+		}, 'main')
+
+		return () => ctx.revert();
+	}, [])
+  
   return (
-    <div className={styles.contactContainer}>
+    <div id='contact' className={styles.contactContainer}>
       <h1>🚀 Trabajemos juntos! 🚀</h1>
       <div className={styles.separatorLine}></div>
       <div className={styles.infoFormCotainer}>
@@ -25,7 +43,7 @@ const Contact = () => {
         <form className={styles.formContainer}>
           <h3>Hola!</h3><p>Soy <Input />!</p>
           <p>Mi <b>email</b> es <Input width='50%' /> y me <b>contacto porque</b> <Input width='100%'/></p>
-          <button value="asdf" type="submit"></button>
+          <button className={styles.sendButton} type="submit">Enviar!</button>
         </form>
       </div>
     </div>

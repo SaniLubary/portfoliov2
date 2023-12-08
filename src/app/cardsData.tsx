@@ -36,7 +36,7 @@ export const muniData = {
       id: 'muni',
       selected: false,
       alt: 'municipallity logo',
-      style: { top: '100px', position: 'relative' },
+      style: { top: '-10px', position: 'relative' },
     },
   ],
   details: [
@@ -50,7 +50,7 @@ export const adusData = {
       id: 'adus',
       selected: false,
       alt: 'adus logo',
-      style: { top: '100px', position: 'relative' },
+      style: { top: '-10px', position: 'relative' },
     }
   ],
   details: [

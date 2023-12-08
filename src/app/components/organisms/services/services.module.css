@@ -28,3 +28,27 @@
     border-radius: 6px;
     background: rgba(38, 54, 69, 0.20);
 }
+
+/* Tablet and Smaller Desktop */
+@media (max-width: 887px) {
+    .services {
+        grid-template-columns: repeat(1, 1fr);
+        grid-area: 1 / 2 / 3 / 12;
+    }
+    .servicesDescription {
+        grid-area: 1/1/1/1;
+        width: 100%;
+    }
+    .service {
+        grid-column: 1;
+    }
+    .extra {
+        display: none;
+    }
+}
+
+@media (max-width: 705px) {
+    .services {
+        grid-area: 1 / 2 / 3 / 10;
+    }
+}

@@ -1,19 +1,46 @@
 import React, { useLayoutEffect } from 'react'
 import styles from './services.module.css'
 import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/all'
 
 const Services = () => {
 	useLayoutEffect(() => {
 		const ctx = gsap.context(() => {
-			gsap.fromTo(`.${styles.services}`, { opacity: 0, y: 500 }, {
+			gsap.fromTo(`.${styles.servicesDescription}`, { opacity: 0, y: 300 }, {
 				scrollTrigger: {
-					trigger: 'main',
-					start: '50% 50%',
-					end: '65% 50%',
+					trigger: `.${styles.servicesDescription}`,
 					scrub: 3,
+					start: '-200% 100%',
+					end: '-200% 100%',
 				},
 				y: 0,
 				opacity: 1,
+			})
+
+			ScrollTrigger.batch(`.${styles.service}`, {
+				onEnter: (batch) => gsap.fromTo(batch, { opacity: 0, x: -500 }, {
+					scrollTrigger: {
+						trigger: batch,
+						scrub: 3,
+						start: '-200% 100%',
+						end: '-200%',
+					},
+					x: 0,
+					opacity: 1,
+				})
+			})
+			
+			ScrollTrigger.batch(`.${styles.highlight}`, {
+				onEnter: (batch) => gsap.fromTo(batch, { opacity: 0, x: 500 }, {
+					scrollTrigger: {
+						trigger: batch,
+						scrub: 3,
+						start: '-200% 100%',
+						end: '-200%',
+					},
+					x: 0,
+					opacity: 1,
+				})
 			})
 		}, 'main')
 
@@ -21,8 +48,8 @@ const Services = () => {
 	}, [])
 
 	return (
-		<div className={styles.services}>
-			<div className={`${styles.service}`}>
+		<div id='services' className={styles.services}>
+			<div className={`${styles.service} ${styles.extra}`}>
 			</div>
 			<div className={styles.servicesDescription}>
 				<h1>SERVICIOS</h1>

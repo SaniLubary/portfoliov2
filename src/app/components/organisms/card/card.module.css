@@ -8,8 +8,7 @@
 
 .card {
   overflow: hidden;
-  opacity: 0;
-  width: 350px;
+  opacity: 0.8;
   color: var(--white);
   height: 450px;
   background: var(--dark-blue);
@@ -79,4 +78,17 @@
 .notSelected {
   width: 20px;
   height: 20px;
+}
+
+/* Tablet and smaller */
+@media (max-width: 887px) {
+  .card {
+    width: 50%;
+  }
+}
+/* Tablet and smaller */
+@media (max-width: 680px) {
+  .card {
+    width: 80%;
+  }
 }

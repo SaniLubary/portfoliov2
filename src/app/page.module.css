@@ -40,8 +40,9 @@
 }
 
 .model {
+  opacity: 0;
   grid-column: 7 / 12;
-  grid-row: 3 / 6;
+  grid-row: 3 / 8;
 }
 
 .scrollIconContainer {
@@ -67,7 +68,7 @@
 
 .mountainsContainer {
   grid-column: 1 / 2;
-  grid-row: 16 / 17;
+  grid-row: 6 / 7;
 }
 
 .wave {
@@ -98,4 +99,47 @@
 }
 
 /* Tablet and Smaller Desktop */
-@media (min-width: 701px) and (max-width: 1120px) {}
+@media (min-width: 701px) and (max-width: 1280px) {
+  .scrollIconContainer {
+    grid-area: 6/6/7/8;
+  }
+}
+
+@media (max-width: 887px) {
+  .scrollIconContainer {
+    grid-area: 4/6/7/8;
+  }
+  
+  .greetingsSection {
+    grid-column: 2 / 12;
+    grid-row: 3 / 6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    z-index: 1;
+  }
+
+  .model {
+    grid-column: 3 / 12;
+    grid-row: 5 / 8;
+    transform: scale(0.5);
+    -webkit-transform: scale(0.5);
+    -moz-transform: scale(0.5);
+    -ms-transform: scale(0.5);
+    -o-transform: scale(0.5);
+  }
+
+  .extraCardSpace {
+    display: none;
+  }
+
+  .cardContainer {
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: center;
+  }
+
+  .turquoiseContainer {
+    grid-column: 1/13;
+  }
+}

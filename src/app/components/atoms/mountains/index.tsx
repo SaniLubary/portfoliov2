@@ -4,17 +4,16 @@ import styles from './mountains.module.css'
 
 const Mountains = (props: any) => {
   const mountains = useRef(null)
-  
+
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.to(mountains.current, {
+      gsap.to(`.${styles.mountains}`, {
         scrollTrigger: {
-          trigger: 'main',
-          start: '30% 50%',
-          end: '40% 50%',
+          trigger: `.${styles.mountains}`,
+          start: 'center 100%',
+          end: 'center 100%',
           scrub: 3,
         },
-        top: 1000,
         scaleX: 1.3,
         scaleY: -1.3
       })
@@ -29,7 +28,6 @@ const Mountains = (props: any) => {
       height={704}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      style={{ transform: 'scale(-1, 1)'}}
       ref={mountains}
       className={styles.mountains}
       {...props}
