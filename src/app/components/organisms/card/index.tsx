@@ -21,43 +21,12 @@ interface CardProps {
   };
 }
 
-function getRandomInt(min: number, max: number) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-const floatAnimation = (ref: MutableRefObject<any>) => {
-  const tl = gsap.timeline()
-  tl.repeat(-1)
-  tl.yoyo(true)
-  tl.to(ref.current,
-    {
-      duration: getRandomInt(3, 5),
-      scale: 1.2,
-      y: '+=4',
-      x: '+=3',
-      rotation: `-=${getRandomInt(-3, 3)}`,
-      ease: "power1.ease"
-    })
-}
-
 const Card = ({ data }: CardProps) => {
   const [cardData, setCardData] = useState(data);
   const [currentImg, setCurrentImg] = useState(cardData.images[0])
 
   const refImage = useRef<HTMLImageElement | null>(null);
   const card = useRef(null)
-
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      if (refImage.current) {
-        floatAnimation(refImage)
-      }
-    }, 'main')
-
-    return () => ctx.revert()
-  }, [])
 
   const handleButtonClick = (img: CardProps["data"]["images"][0]) => {
     if (img.selected || !refImage?.current) return
@@ -141,7 +110,7 @@ const Card = ({ data }: CardProps) => {
   }
 
   return (
-    <div ref={card} className={`${styles.card} card`}>
+    <div ref={card} className={`${styles.card}`}>
       {/* Image */}
       <div className={styles.imageContainer} onClick={() => handleImageClick()}>
         <Image

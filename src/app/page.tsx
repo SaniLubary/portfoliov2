@@ -44,18 +44,6 @@ export default function Home() {
         opacity: 1,
         y: 0
       })
-
-      ScrollTrigger.batch(`.${styles.cardContainer} div`, {
-        onEnter: (batch) => gsap.fromTo(batch, { opacity: 0, x: -1000 }, {
-          scrollTrigger: {
-            trigger: batch,
-            start: '-100% 100%',
-            end: '-100%',
-          },
-          x: 0,
-          opacity: 0.9,
-        })
-      })
     }, main)
 
     return () => ctx.revert();

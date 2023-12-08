@@ -5,23 +5,6 @@ import styles from './mountains.module.css'
 const Mountains = (props: any) => {
   const mountains = useRef(null)
 
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.to(`.${styles.mountains}`, {
-        scrollTrigger: {
-          trigger: `.${styles.mountains}`,
-          start: 'center 100%',
-          end: 'center 100%',
-          scrub: 3,
-        },
-        scaleX: 1.3,
-        scaleY: -1.3
-      })
-    }, 'main')
-
-    return () => ctx.revert()
-  }, [])
-  
   return (
     <svg
       width={829}

@@ -17,13 +17,13 @@ const Services = () => {
 				opacity: 1,
 			})
 
-			ScrollTrigger.batch(`.${styles.service}`, {
+			ScrollTrigger.batch(`.${styles.service}:not(${styles.highlight})`, {
 				onEnter: (batch) => gsap.fromTo(batch, { opacity: 0, x: -500 }, {
 					scrollTrigger: {
 						trigger: batch,
 						scrub: 3,
-						start: '-200% 100%',
-						end: '-200%',
+						start: '-300% 100%',
+						end: '-300%',
 					},
 					x: 0,
 					opacity: 1,
@@ -35,8 +35,8 @@ const Services = () => {
 					scrollTrigger: {
 						trigger: batch,
 						scrub: 3,
-						start: '-200% 100%',
-						end: '-200%',
+						start: '-300% 100%',
+						end: '-300%',
 					},
 					x: 0,
 					opacity: 1,

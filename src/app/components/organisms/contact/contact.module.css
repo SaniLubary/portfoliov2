@@ -66,17 +66,45 @@
     .infoContainer {
         align-self: center;
     }
+
     .separatorLine {
         margin-bottom: 0;
     }
+
     .contactContainer {
-        grid-area: 3/2/6/10;
+        grid-area: 3/2/6/11;
     }
+
     .infoFormCotainer {
         flex-direction: column;
     }
+
     .formContainer {
         width: 100%;
         margin-top: 2em;
+    }
+}
+
+@media (max-width: 593px) {
+    .contactContainer {
+        grid-area: 3 / 2 / 6 / 10;
+    }
+}
+
+@media (max-width: 538px) {
+    .contactContainer {
+        grid-area: 3/2/6/9;
+    }
+}
+
+@media (max-width: 492px) {
+    .contactContainer {
+        grid-area: 3/1/6/7;
+    }
+}
+@media (max-width: 427px) {
+    .contactContainer {
+        grid-area: 3/1/6/8;
+        align-items: center;
     }
 }

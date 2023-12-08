@@ -13,9 +13,9 @@
     .mountains {
         top: 1000px;
     }
-  }
+}
 
-  /* Tablet and smaller */
+/* Tablet and smaller */
 @media (max-width: 887px) {
     .mountains {
         top: 2200px;
@@ -25,5 +25,17 @@
         -moz-transform: scale(-0.8, 0.8);
         -ms-transform: scale(-0.8, 0.8);
         -o-transform: scale(-0.8, 0.8);
+    }
+}
+
+
+@media (max-width: 500px) {
+    .mountains {
+        top: 2350px;
+        transform: scale(-0.5, 0.5);
+        -webkit-transform: scale(-0.5, 0.5);
+        -moz-transform: scale(-0.5, 0.5);
+        -ms-transform: scale(-0.5, 0.5);
+        -o-transform: scale(-0.5, 0.5);
 }
   }

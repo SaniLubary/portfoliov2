@@ -1,10 +1,10 @@
-import React, { useLayoutEffect } from 'react'
+import React, { HTMLInputTypeAttribute, InputHTMLAttributes, useLayoutEffect } from 'react'
 import styles from './contact.module.css'
 import Image from 'next/image'
 import gsap from 'gsap'
 
-const Input = ({width = '30%'}) => {
-  return <input className={styles.input} style={{ width }}/>
+const Input = ({name='', autoComplete='', width = '30%', type = 'text'}: {name: string, autoComplete?: string, width?: string, type?: HTMLInputTypeAttribute}) => {
+  return <input name={name} autoComplete={autoComplete} required={true} type={type} className={styles.input} style={{ width }}/>
 }
 
 const Contact = () => {
@@ -24,6 +24,10 @@ const Contact = () => {
 
 		return () => ctx.revert();
 	}, [])
+
+  const handleFormSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    // submit form
+  }
   
   return (
     <div id='contact' className={styles.contactContainer}>
@@ -41,9 +45,9 @@ const Contact = () => {
           <a href="">+54 000 0000000</a>
         </div>
         <form className={styles.formContainer}>
-          <h3>Hola!</h3><p>Soy <Input />!</p>
-          <p>Mi <b>email</b> es <Input width='50%' /> y me <b>contacto porque</b> <Input width='100%'/></p>
-          <button className={styles.sendButton} type="submit">Enviar!</button>
+          <h3>Hola!</h3><p>Soy <Input autoComplete='given-name' name='name' />!</p>
+          <p>Mi <b>email</b> es <Input autoComplete='email' name='email' type='email' width='50%' /> y me <b>contacto porque</b> <Input name='description' width='100%'/></p>
+          <button className={styles.sendButton} onClick={e =>handleFormSubmit(e)} type="submit">Enviar!</button>
         </form>
       </div>
     </div>
