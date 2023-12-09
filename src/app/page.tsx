@@ -39,10 +39,21 @@ export default function Home() {
       gsap.fromTo(`.${styles.cardTitle}`, { opacity: 0, y: 100 }, {
         scrollTrigger: {
           trigger: `.${styles.cardTitle}`,
-          scrub: true,
+          start: '60% 100%',
+          end: '160% 100%',
+          scrub: 1,
         },
         opacity: 1,
         y: 0
+      })
+
+      gsap.to(`.${styles.scrollIconContainer}`, {
+        scrollTrigger: {
+          trigger: `.${styles.scrollIconContainer}`,
+          scrub: true,
+        },
+        opacity: 0,
+        y: -100
       })
     }, main)
 
@@ -69,7 +80,7 @@ export default function Home() {
       </div>
 
       <div className={styles.model}>
-        <Image src={'/santi.gif'} width={500} height={500} alt='Gif of a dude animated floating in space' />
+        <Image src={'/santi.gif'} fill priority alt='Gif of a dude animated floating in space' />
       </div>
 
       <div className={styles.mountainsContainer}>

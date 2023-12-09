@@ -75,7 +75,7 @@
   grid-column: 1 / 13;
   grid-row: 12 / 14;
   z-index: 1;
-  transform: scale(1.2);
+  transform: scale(2,1.2);
 }
 
 .turquoiseContainer {
@@ -122,12 +122,12 @@
 
   .model {
     grid-column: 3 / 12;
-    grid-row: 5 / 8;
-    transform: scale(0.5);
-    -webkit-transform: scale(0.5);
-    -moz-transform: scale(0.5);
-    -ms-transform: scale(0.5);
-    -o-transform: scale(0.5);
+    grid-row: 6 / 8;
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
   }
 
   .extraCardSpace {
@@ -142,7 +142,7 @@
 
 @media (max-width: 500px) {
   .scrollIconContainer {
-    grid-area: 6/4/7/5;
+    grid-area: 8/7/9/7;
   }
   .turquoiseContainer {
     grid-template-columns: auto;

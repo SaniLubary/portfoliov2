@@ -24,7 +24,7 @@ const Header = () => {
 			gsap.to(`.${styles.header}`, {
 				scrollTrigger: {
 					trigger: 'body',
-					start: '15%, 30%',
+					start: '1%, 30%',
 					end: "20% 30%",
 					scrub: true,
 				},
