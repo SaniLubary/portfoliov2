@@ -43,7 +43,18 @@
   opacity: 0;
   grid-column: 7 / 12;
   grid-row: 3 / 8;
+  display: flex;
+  align-items: center;
+  justify-items: center;
 }
+
+.modelImage {
+  width: auto;
+  height: 100%;
+  position: relative;
+  left: -200px;
+}
+
 
 .scrollIconContainer {
   grid-area: 7/6/8/8;
@@ -75,7 +86,7 @@
   grid-column: 1 / 13;
   grid-row: 12 / 14;
   z-index: 1;
-  transform: scale(2,1.2);
+  transform: scale(2, 1.2);
 }
 
 .turquoiseContainer {
@@ -107,12 +118,14 @@
 
 @media (max-width: 887px) {
   .scrollIconContainer {
-    grid-area: 5/6/7/8;
+    grid-area: 3/6/3/8;
+    position: relative;
+    top: 250px;
   }
-  
+
   .greetingsSection {
     grid-column: 2 / 12;
-    grid-row: 3 / 6;
+    grid-row: 2 / 5;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -121,13 +134,24 @@
   }
 
   .model {
-    grid-column: 3 / 12;
-    grid-row: 6 / 8;
+    grid-column: 1 / 13;
+    grid-row: 5;
     transform: scale(1);
+    display: flex;
+    align-items: center;
+    justify-items: center;
+
     -webkit-transform: scale(1);
     -moz-transform: scale(1);
     -ms-transform: scale(1);
     -o-transform: scale(1);
+  }
+
+  .modelImage {
+    position: static;
+    opacity: 0.5;
+    width: 100%;
+    height: auto;
   }
 
   .extraCardSpace {
@@ -137,14 +161,23 @@
   .cardContainer {
     grid-template-columns: repeat(1, 1fr);
     justify-items: center;
+    grid-area: 6/2/10/12;
   }
 }
 
 @media (max-width: 500px) {
   .scrollIconContainer {
-    grid-area: 8/7/9/7;
+    grid-area: 6/7/7/7;
+    position: relative;
+    top: 50px;
   }
+
   .turquoiseContainer {
     grid-template-columns: auto;
+  }
+
+  .cardContainer {
+    grid-area: 7/2/10/12;
+    z-index: 2;
   }
 }

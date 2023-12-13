@@ -80,7 +80,7 @@ export default function Home() {
       </div>
 
       <div className={styles.model}>
-        <Image src={'/santi.gif'} fill priority alt='Gif of a dude animated floating in space' />
+        <Image className={styles.modelImage} src={'/santi.gif'} width={800}height={500} priority alt='Gif of a dude animated floating in space' />
       </div>
 
       <div className={styles.mountainsContainer}>
