@@ -1,11 +1,15 @@
-.headerContainer { 
-    position: fixed;
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    z-index: 20;
-    width: 100%;
-
-    top: -300px;
+.headerContainer {
+  position: fixed;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  z-index: 20;
+  width: 100%;
+  transition: all;
+  top: -300px;
+  -webkit-transition: all;
+  -moz-transition: all;
+  -ms-transition: all;
+  -o-transition: all;
 }
 
 .logo {
@@ -34,6 +38,139 @@
   transition: all 0.2s ease-in-out;
   margin: 0 8px;
 }
+
 .navLink:hover {
   color: var(--turquoise);
+}
+
+.hamburgerMenu,
+.hamburgerMenuClose {
+  display: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.hamburgerLine,
+.hamburgerLineClose {
+  width: 1.5rem;
+  border-radius: 0.25rem;
+  border: 2px solid white;
+  -webkit-border-radius: 0.25rem;
+  -moz-border-radius: 0.25rem;
+  -ms-border-radius: 0.25rem;
+  -o-border-radius: 0.25rem;
+}
+
+.hamburgerLine:nth-child(1),
+.hamburgerLine:nth-child(2) {
+  margin-bottom: 0.25rem
+}
+
+.hamburgerLineClose:nth-child(1) {
+  position: relative;
+  left: 5px;
+  border-color: var(--dark-blue);
+  --tw-rotate: -45deg;
+  transform: rotate(var(--tw-rotate));
+  -webkit-transform: rotate(var(--tw-rotate));
+  -moz-transform: rotate(var(--tw-rotate));
+  -ms-transform: rotate(var(--tw-rotate));
+  -o-transform: rotate(var(--tw-rotate));
+}
+
+.hamburgerLineClose:nth-child(2) {
+  border-color: var(--dark-blue);
+  --tw-rotate: 45deg;
+  transform: rotate(var(--tw-rotate));
+  -webkit-transform: rotate(var(--tw-rotate));
+  -moz-transform: rotate(var(--tw-rotate));
+  -ms-transform: rotate(var(--tw-rotate));
+  -o-transform: rotate(var(--tw-rotate));
+}
+
+.sidenav {
+  position: absolute;
+  background-color: white;
+  height: 100vh;
+  width: 100vw;
+  transition: all;
+  left: 100vw;
+  -webkit-transition: all;
+  -moz-transition: all;
+  -ms-transition: all;
+  -o-transition: all;
+  transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+
+}
+
+.model {
+  position: relative;
+}
+
+.sidenavHeader {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  align-items: center;
+  justify-content: space-around;
+}
+
+.sidenavTitle {
+  color: var(--dark-blue);
+  padding: 1.5rem;
+  grid-area: 1/5/1/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidenavNav {
+  display: flex;
+  flex-direction: column;
+  color: var(--dark-blue);
+  align-items: center;
+  transition: all;
+  -webkit-transition: all;
+  -moz-transition: all;
+  -ms-transition: all;
+  -o-transition: all;
+}
+
+.sidenavNav > a {
+  padding: 1rem
+}
+
+@media (max-width: 560px) {
+  .headerNavContainer {
+    display: none;
+  }
+
+  .hamburgerMenuClose {
+    display: flex;
+    height: 100%;
+    grid-area: 1/11/1/12;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sidenavShow {
+    transition: all;
+    left: 0;
+    -webkit-transition: all;
+    -moz-transition: all;
+    -ms-transition: all;
+    -o-transition: all;
+}
+
+  .hamburgerLineClose {
+    width: 0;
+    height: 30px;
+    border-width: 3px;
+  }
+
+  .hamburgerMenu {
+    display: flex;
+    flex-direction: column;
+  }
 }

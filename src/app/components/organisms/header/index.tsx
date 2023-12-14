@@ -1,8 +1,11 @@
-import React, { useLayoutEffect, useRef } from 'react'
+import React, { useLayoutEffect, useRef, useState } from 'react'
 import styles from './header.module.css'
 import { gsap } from "gsap";
+import Image from 'next/image';
 
 const Header = () => {
+	const [isSidenavOpen, setIsSidenavOpen] = useState(false)
+
 	const header = useRef<HTMLDivElement>(null)
 
 	useLayoutEffect(() => {
@@ -11,10 +14,9 @@ const Header = () => {
 				top: 0,
 				delay: 0.4
 			})
-			
+
 			gsap.to(header.current, {
 				scrollTrigger: {
-					trigger: 'body',
 					start: '15%, 30%',
 					end: "20% 30%",
 					scrub: true,
@@ -23,7 +25,6 @@ const Header = () => {
 			})
 			gsap.to(`.${styles.header}`, {
 				scrollTrigger: {
-					trigger: 'body',
 					start: '1%, 30%',
 					end: "20% 30%",
 					scrub: true,
@@ -65,6 +66,28 @@ const Header = () => {
 					<a href="#services" className={styles.navLink}>Servicios</a>
 					<a href="#contact" className={styles.navLink}>Conectar</a>
 				</nav>
+				<div className={styles.hamburgerMenu} onClick={() => setIsSidenavOpen(prev => !prev)}>
+					<div className={styles.hamburgerLine}></div>
+					<div className={styles.hamburgerLine}></div>
+					<div className={styles.hamburgerLine}></div>
+				</div>
+			</div>
+			<div className={`${styles.sidenav} ${isSidenavOpen && styles.sidenavShow}`}>
+				<div className={styles.sidenavHeader}>
+					<h1 className={styles.sidenavTitle}>
+						Menu
+					</h1>
+					<div className={styles.hamburgerMenuClose} onClick={() => setIsSidenavOpen(prev => !prev)}>
+						<div className={styles.hamburgerLineClose}></div>
+						<div className={styles.hamburgerLineClose}></div>
+					</div>
+				</div>
+				<div className={styles.sidenavNav}>
+					<a href="#experience" onClick={() => setIsSidenavOpen(prev => !prev)}>Experiencia</a>
+					<a href="#services" onClick={() => setIsSidenavOpen(prev => !prev)}>Servicios</a>
+					<a href="#contact" onClick={() => setIsSidenavOpen(prev => !prev)}>Contactar</a>
+				</div>
+				<Image className={styles.model} src={'/santi.gif'} width={800} height={500} priority alt='Gif of a dude animated floating in space' />
 			</div>
 		</div>
 	)
